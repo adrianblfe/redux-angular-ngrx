@@ -48,20 +48,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
 		this.store.dispatch( ui.isLoading() );
 
-		// Loading
-		// Swal.fire({
-		// 	title: 'Espere por favor',
-		// 	didOpen: () => {
-		// 	  Swal.showLoading()
-		// 	},
-		// });
-
 		const { email, password } = this.loginForm.value;
 
 		this.authService.loginUsuario( email, password )
-			.then( credentials => {
-				console.log(credentials);
-				// Swal.close();
+			.then( () => {
 				this.store.dispatch( ui.stopLoading() );
 				this.router.navigate(['/']);
 			})
