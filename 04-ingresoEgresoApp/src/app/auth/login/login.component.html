@@ -6,14 +6,15 @@
                 <h2 class="text-center mb-4" style="color: white;">Ingresar</h2>
 
                 <div class="auto-form-wrapper">
-                    <form action="#">
+
+                    <form [formGroup]="loginForm">
                         <div class="form-group">
                             <label class="label">Usuario</label>
                             <div class="input-group">
-                                <input type="email" class="form-control" placeholder="Email">
+                                <input type="email" class="form-control" placeholder="Email" formControlName="email">
                                 <div class="input-group-append">
                                     <span class="input-group-text">
-										<i class="fa fa-check-circle"></i>
+										<i *ngIf="loginForm.get('email')?.valid" class="fa fa-check-circle"></i>
 									</span>
                                 </div>
                             </div>
@@ -22,17 +23,17 @@
                         <div class="form-group">
                             <label class="label">Contraseña</label>
                             <div class="input-group">
-                                <input type="password" class="form-control" placeholder="*********">
+                                <input type="password" class="form-control" placeholder="*********" formControlName="password">
                                 <div class="input-group-append">
                                     <span class="input-group-text">
-										<i class="fa fa-check-circle"></i>
+										<i *ngIf="loginForm.get('password')?.valid" class="fa fa-check-circle"></i>
 									</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <button class="btn btn-primary submit-btn btn-block">Login</button>
+                            <button class="btn btn-primary submit-btn btn-block" [disabled]="loginForm.invalid" (click)="login()">Login</button>
                         </div>
 
 
@@ -42,6 +43,7 @@
                             <a routerLink="/register" class="text-black text-small">Crear una cuenta</a>
                         </div>
                     </form>
+
                 </div>
 
             </div>
